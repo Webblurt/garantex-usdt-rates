@@ -29,7 +29,7 @@ func main() {
 	log.Println("Connected to PostgreSQL")
 
 	// Create gRPC server
-	grpcServer := grpc.NewRateServer()
+	grpcServer := grpc.NewServer()
 	rateServer := grpc.NewRateServer(store, cfg.Grinex.URL)
 	ratespb.RegisterRateServiceServer(grpcServer, rateServer)
 
