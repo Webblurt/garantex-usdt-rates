@@ -8,7 +8,7 @@ import (
 	"syscall"
 
 	"github.com/Webblurt/garantex-usdt-rates/internal/config"
-	"github.com/Webblurt/garantex-usdt-rates/internal/grpc"
+	grpcsvc "github.com/Webblurt/garantex-usdt-rates/internal/grpc"
 	"github.com/Webblurt/garantex-usdt-rates/internal/storage"
 	ratespb "github.com/Webblurt/garantex-usdt-rates/proto/ratespb"
 	"google.golang.org/grpc"
@@ -30,7 +30,7 @@ func main() {
 
 	// Create gRPC server
 	grpcServer := grpc.NewServer()
-	rateServer := grpc.NewRateServer(store, cfg.Grinex.URL)
+	rateServer := grpcsvc.NewRateServer(store, cfg.Grinex.URL)
 	ratespb.RegisterRateServiceServer(grpcServer, rateServer)
 
 	// Listen on port
