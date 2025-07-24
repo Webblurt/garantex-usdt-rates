@@ -1,0 +1,1 @@
+# garantex-usdt-rates
