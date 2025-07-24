@@ -1,0 +1,26 @@
+version: "3.8"
+
+services:
+  postgres:
+    image: postgres:15
+    env_file:
+      - .env
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      - CONFIG_PATH=config/config.yaml
+    depends_on:
+      - postgres
+    ports:
+      - "50051:50051"
+    restart: on-failure
+
+volumes:
+  pgdata:
