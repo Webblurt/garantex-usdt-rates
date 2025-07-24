@@ -23,6 +23,7 @@ func NewRateServer(storage *storage.Storage, apiURL string) *RateServer {
 	}
 }
 
+// GetRates implements the GetRates gRPC method.
 func (s *RateServer) GetRates(ctx context.Context, req *ratespb.GetRatesRequest) (*ratespb.GetRatesResponse, error) {
 	rate, err := rates.FetchRates(s.apiURL)
 	if err != nil {
@@ -43,6 +44,7 @@ func (s *RateServer) GetRates(ctx context.Context, req *ratespb.GetRatesRequest)
 	}, nil
 }
 
+// HealthCheck implements the HealthCheck gRPC method.
 func (s *RateServer) HealthCheck(ctx context.Context, req *ratespb.HealthCheckRequest) (*ratespb.HealthCheckResponse, error) {
 	return &ratespb.HealthCheckResponse{
 		Status:    "OK",
